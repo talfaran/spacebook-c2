@@ -94,10 +94,9 @@ var app = SpacebookApp();
 app.renderPosts();
 
 // Events
-$('.add-post').on('click', function (e) {
-  e.preventDefault();
-
+$('.add-post').on('click', function () {
   var text = $('#post-name').val();
+  
   app.createPost(text);
   app.renderPosts();
 });
