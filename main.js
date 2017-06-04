@@ -19,7 +19,7 @@ var SpacebookApp = function () {
   ];
 
   // variable for storing our posts div
-  var $posts = $('.posts');
+  var $posts = $('.posts');f
 
   // build a single post object and push it to array
   var createPost = function (text) {
@@ -73,9 +73,7 @@ var SpacebookApp = function () {
 
   var removePost = function (currentPost) {
     var $clickedPost = $(currentPost).closest('.post');
-
     var index = $clickedPost.index();
-
     posts.splice(index, 1);
     $clickedPost.remove();
   };
@@ -129,8 +127,6 @@ app.renderComments();
 
 // Events
 $('.add-post').on('click', function (e) {
-  e.preventDefault();
-
   var text = $('#post-name').val();
   app.createPost(text);
   app.renderPosts();
@@ -150,7 +146,6 @@ $('.posts').on('click', '.add-comment', function () {
 
   // finding the index of the post in the page... will use it in #createComment
   var postIndex = $(this).closest('.post').index();
-
   app.createComment(text, postIndex);
   app.renderComments();
 });
