@@ -19,7 +19,7 @@ var SpacebookApp = function () {
   ];
 
   // variable for storing our posts div
-  var $posts = $('.posts');f
+  var $posts = $('.posts');
 
   // build a single post object and push it to array
   var createPost = function (text) {
