@@ -24,16 +24,20 @@ var SpacebookApp = function () {
 
   var renderPosts = function () {
     $posts.empty();
+    var source = $('#post-template').html();
+var template = Handlebars.compile(source);
     for (var i = 0; i < posts.length; i += 1) {
       var post = posts[i];
+      var newHTML = template(post);
+      $('.posts').append(newHTML);
 
-      var commentsContainer = '<div class="comments-container">' +
-        '<input type="text" class="comment-name">' +
-        '<button class="btn btn-primary add-comment">Post Comment</button> </div>';
+      // var commentsContainer = '<div class="comments-container">' +
+      //   '<input type="text" class="comment-name">' +
+      //   '<button class="btn btn-primary add-comment">Post Comment</button> </div>';
 
-      $posts.append('<div class="post" data-id=' + post.id + '>'
-        + '<a href="#" class="remove">remove</a> ' + '<a href="#" class="show-comments">comments</a> ' + post.text +
-        commentsContainer + '</div>');
+      // $posts.append('<div class="post" data-id=' + post.id + '>'
+      //   + '<a href="#" class="remove">remove</a> ' + '<a href="#" class="show-comments">comments</a> ' + post.text +
+      //   commentsContainer + '</div>');
     }
   }
 
@@ -71,15 +75,27 @@ var SpacebookApp = function () {
     $clickedPost.find('.comment-div').remove();
     var id = $clickedPost.data().id;
     var post = _findPostById(id);
+    var currentComment = $clickedPost.find('.comments-container');
+    var source = $('#comments-template').html();
+    var template = Handlebars.compile(source);
 
     for (var j = 0; j < post.comments.length; j++) {
       var btnDataId = post.comments[j].id
-      var removeBtn = '<button class= "btn btn-danger removeButton" data-id=' + btnDataId + ' type="button">remove comment</button>'
       var comment = post.comments[j].text;
-      var currentComment = $clickedPost.find('.comments-container');
-      currentComment.append('<div class = "comment-div">' + '<p>' + comment + '</p>' + "   " + removeBtn + '</d>');
+      var comment = post.comments[j];
+      var newHTML = template(comment);
+      currentComment.append(newHTML)
     }
+
   }
+
+     // var removeBtn = '<button class= "btn btn-danger removeButton" data-id=' + btnDataId + ' type="button">remove comment</button>'
+ //<div class = "comment-div">' + '<p>' + comment + '</p>' + "   " + removeBtn + '</d>');
+
+                // var newHTML = template(post);
+          // $('.posts').append(newHTML);
+    
+  
 
   var removeComment = function (currentRmvBtn) {
     var $clickedPost = $(currentRmvBtn).closest('.post');

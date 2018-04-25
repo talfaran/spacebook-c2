@@ -27,7 +27,27 @@
 
     </div>
   </div>
+  <script src= "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  
+  <script id="post-template" type="text/x-handlebars-template">
+      <div class="post" data-id="{{id}}">
+      <a href="#" class="remove">remove</a>
+      <a href="#" class="show-comments">comments</a> {{text}} 
+      <div class="comments-container">
+      <input type="text" class="comment-name">
+      <button class="btn btn-primary add-comment">Post Comment</button>
+    </div>
+   </div>
+  </script>
+
+  <script id="comments-template" type="text/x-handlebars-template">
+    <div class = "comment-div">
+      <p>{{text}}</p>
+      <button class= "btn btn-danger removeButton" data-id="{{id}}" type="button">remove comment</button></d>
+
+  </script>
+
   <script src="main.js"></script>
 </body>
 </html>
