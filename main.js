@@ -24,7 +24,6 @@ var SpacebookApp = function () {
 
   var renderPosts = function () {
     $posts.empty();
-
     for (var i = 0; i < posts.length; i += 1) {
       var post = posts[i];
 
@@ -63,7 +62,6 @@ var SpacebookApp = function () {
     for (var i = 0; i < posts.length; i += 1) {
       if (id === posts[i].id) {
         posts[i].comments.push($comment)
-        console.log(posts[i]);
       }
     }
   }
@@ -91,9 +89,6 @@ var SpacebookApp = function () {
     for (var i = 0; i < post.comments.length; i++) {
       if (post.comments[i].id === btnID) {
         post.comments.splice(i, 1);
-        console.log(post);
-
-
       }
     }
   }
@@ -128,6 +123,7 @@ $('.posts').on('click', '.remove', function () {
 
 $('.posts').on('click', '.show-comments', function () {
   app.toggleComments(this);
+  app.renderComments(this);
 });
 
 $('.posts').on('click', '.add-comment', function () {
